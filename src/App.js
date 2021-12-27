@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import SignInPage from "./Pages/signin";
-import SignUpPage from "./Pages/signup";
-import HomePage from "./Pages/home";
-import ProfilePage from "./Pages/profile";
+import SignInPage from "./pages/signin";
+import SignUpPage from "./pages/signup";
+import HomePage from "./pages/home";
+import ProfilePage from "./pages/profile";
 function App() {
   return (
     <div className="App">
