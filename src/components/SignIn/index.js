@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { Container, Form, FormButton, FormContent, FormHeading, FormInput, FormLabel, FormWrapper, Icon, Text } from './styles';
+import React from 'react';
+import { Container, Form, FormButton, FormContent, FormHeading, FormInput, FormLabel, FormWrapper, Icon, } from './styles';
 
 const SignIn = () => {
    
