@@ -6,7 +6,7 @@ const SignIn = () => {
     return (
         <Container>
             <FormWrapper>
-                <Icon to= "/">getBasis</Icon>
+                <Icon to= "/">BASIS</Icon>
                 <FormContent>
                     <Form>
                     <FormHeading>

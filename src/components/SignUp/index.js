@@ -1,14 +1,14 @@
 import React from 'react';
-import { Container, FormButton, FormContent, FormHeading, FormInput, FormLabel, FormWrapper, Icon, } from './styles';
+import { Container, Form, FormButton, FormContent, FormHeading, FormInput, FormLabel, FormWrapper, Icon, } from './styles';
 import { RadioContainer, RadioInput } from './styles';
 
 const SignUp = ()=> {
     return(
         <Container>
       <FormWrapper>
-        <Icon to="/">getBasis</Icon>
+        <Icon to="/">BASIS</Icon>
         <FormContent>
-         
+          <Form>
             <FormHeading>Create A New Account</FormHeading>
 
             <FormLabel htmlFor="for">Name</FormLabel>
@@ -30,7 +30,7 @@ const SignUp = ()=> {
               </FormLabel>
             </RadioContainer>
             <FormButton type="submit">Continue</FormButton>
-          
+            </Form>
         </FormContent>
       </FormWrapper>
     </Container>

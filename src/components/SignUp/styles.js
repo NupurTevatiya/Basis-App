@@ -8,7 +8,7 @@ export const Container = styled.div`
   top: 0;
   z-index: 0;
   overflow: hidden;
-  background: linear-gradient(108deg, rgba(1, 147, 86, 1) 0%, rgba(10, 201, 122, 1) 100%);
+  background: 	#FFFFFF;
 `;
 export const FormWrapper = styled.div`
   height: 100%;
@@ -25,7 +25,7 @@ export const Icon = styled.a`
   margin-left: 32px;
   margin-top: 32px;
   text-decoration: none;
-  color: #fff;
+  color: #070062;
   font-weight: 700;
   font-size: 32px;
 
@@ -47,7 +47,7 @@ export const FormContent = styled.div`
 
 
 export const Form = styled.form`
-  background: #010101;
+  background: #070062;
   max-width: 400px;
   height: auto;
   width: 100%;
@@ -81,7 +81,7 @@ export const FormInput = styled.input`
   border-radius: 4px;
 `;
 export const FormButton = styled.button`
-  background: #01bf71;
+  background: #2314ff;
   padding: 16px 0;
   border: none;
   border-radius: 4px;
