@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { requestEmailVerification } from "../../actions/auth";
+import { requestEmailVerification, verifyEmailToken } from "../../actions/auth";
 import {
   Container,
   Form,
@@ -16,9 +16,9 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [email, setEmail] = useState("");
+  const [verificationCode, setVerificationCode] = useState();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.userInfo);
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,17 +26,31 @@ const Home = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(requestEmailVerification(email));
+    if (user?.token) {
+      dispatch(
+        verifyEmailToken({
+          email: user?.email,
+          token: user?.token,
+          verificationCode,
+        })
+      );
+    } else dispatch(requestEmailVerification(email));
+  };
+
+  const handleVerificationCode = (e) => {
+    setVerificationCode(e.target.value);
   };
 
   useEffect(() => {
-    if (user.isLogin) {
-      navigate("/signin");
-    } else {
-      navigate("/signup");
+    if (user?.token && user?.isVerified) {
+      if (user?.isLogin) {
+        navigate("/signin");
+      } else {
+        navigate("/signup");
+      }
     }
   }, [user]);
-
+  console.log(user);
   return (
     <Container>
       <FormWrapper>
@@ -54,6 +68,16 @@ const Home = () => {
               value={email}
               required
             />
+            {user?.token && (
+              <>
+                <FormLabel htmlFor="for">Verification Code</FormLabel>
+                <FormInput
+                  type="number"
+                  value={verificationCode}
+                  onChange={handleVerificationCode}
+                />
+              </>
+            )}{" "}
             <FormButton type="submit">Continue</FormButton>
           </Form>
         </FormContent>
