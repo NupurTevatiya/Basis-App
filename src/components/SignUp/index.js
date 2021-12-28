@@ -32,7 +32,7 @@ const SignUp = () => {
         email: user?.email,
         name,
         agree: true,
-        token: user?.userInfo?.token,
+        token: user?.token,
         referCode: null,
       })
     );
