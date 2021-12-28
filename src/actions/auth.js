@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   REQUEST_EMAIL_VERIFICATION,
   SIGNUP_WITHOUT_REFER,
+  USER_LOGOUT,
   VERIFY_EMAIL_TOKEN,
 } from "../constants/actions";
 
@@ -67,3 +68,22 @@ export const signup = (user) => async (dispatch) => {
     alert(e.message);
   }
 };
+
+export const logout =
+  ({ id, token }) =>
+  async (dispatch) => {
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${id},${token}` },
+      };
+
+      await axios.delete(
+        `https://hiring.getbasis.co/candidate/users/logout/${id}`,
+        config
+      );
+
+      dispatch({ type: USER_LOGOUT });
+    } catch (e) {
+      alert(e.message);
+    }
+  };

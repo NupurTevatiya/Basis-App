@@ -1,6 +1,7 @@
 import {
   REQUEST_EMAIL_VERIFICATION,
   SIGNUP_WITHOUT_REFER,
+  USER_LOGOUT,
   VERIFY_EMAIL_TOKEN,
 } from "../constants/actions";
 
@@ -13,11 +14,23 @@ export const authReducer = (state = {}, action) => {
     case VERIFY_EMAIL_TOKEN:
       return {
         ...state,
-        userInfo: { ...state.userInfo, ...action.payload, isVerified: true },
+        userInfo: {
+          ...state.userInfo,
+          ...action.payload.user,
+          isVerified: true,
+          isLogin: action.payload.isLogin,
+        },
       };
 
     case SIGNUP_WITHOUT_REFER:
-      return { ...state, loggedInUser: { ...action.payload }, loginSuccess: true };
+      return {
+        ...state,
+        userInfo: { ...state.userInfo, ...action.payload },
+        loginSuccess: true,
+      };
+
+    case USER_LOGOUT:
+      return {};
 
     default:
       return state;

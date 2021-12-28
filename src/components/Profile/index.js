@@ -1,11 +1,22 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../../actions/auth';
 import { Container, Form, FormButton, FormContent, FormHeading, FormInput, FormLabel, FormWrapper, Icon, } from './styles';
 
 const Profile = () => {
-    const user = useSelector((state) => state.authReducer.loggedInUser);
+    const user = useSelector((state) => state.authReducer.userInfo);
 
-    console.log(user,'user in p[rofile')
+    console.log(user,'user in profile')
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const handleLogout = async (e) => {
+        e.preventDefault()
+        await dispatch(logout({id: user?._id, token: user?.token}))
+        await navigate('/')
+    }
 
    
     return (
@@ -23,7 +34,7 @@ const Profile = () => {
                         <FormInput type="email" value={user?.email} readOnly placeholder="Your Email" required/>
                         <FormLabel htmlFor="for">Phone Number</FormLabel>
                         <FormInput type="number" value={user?.phoneNumber} readOn placeholder="Phone Number"required/>
-                        <FormButton type="submit">Logout</FormButton>
+                        <FormButton type="submit" onClick={handleLogout}>Logout</FormButton>
                         </Form>
                 </FormContent>
             </FormWrapper>

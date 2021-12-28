@@ -44,7 +44,7 @@ const Home = () => {
   useEffect(() => {
     if (user?.token && user?.isVerified) {
       if (user?.isLogin) {
-        navigate("/signin");
+        navigate("/profile");
       } else {
         navigate("/signup");
       }
