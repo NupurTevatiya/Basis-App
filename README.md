@@ -23,10 +23,10 @@
 
 
 ### Website Preview
-![](https://ibb.co/JKcfkc6)
+![](https://i.ibb.co/FKhS7hZ/Screenshot-4.png)
 
 #### Enter Email
-![](https://ibb.co/JKcfkc6)
+![](https://i.ibb.co/FKhS7hZ/Screenshot-4.png)
 
 #### Verify Your Account
 ![](https://i.ibb.co/RHQXPZm/Screenshot-6.png)
