@@ -8,10 +8,12 @@ import {
   VERIFY_EMAIL_TOKEN,
 } from "../constants/actions";
 
+const BASE_URL = 'https://hiring.getbasis.co/candidate';
+
 export const requestEmailVerification = (email) => async (dispatch) => {
   try {
     const res = await axios.post(
-      "https://hiring.getbasis.co/candidate/users/email",
+      `${BASE_URL}/users/email`,
       {
         email,
       }
@@ -27,10 +29,11 @@ export const requestEmailVerification = (email) => async (dispatch) => {
     alert(e.message);
   }
 };
+
 export const verifyEmailToken = (user) => async (dispatch) => {
   try {
     const res = await axios.put(
-      "https://hiring.getbasis.co/candidate/users/email/verify",
+      `${BASE_URL}/users/email/verify`,
       {
         ...user,
       }
@@ -52,7 +55,7 @@ export const signup = (user) => async (dispatch) => {
 
     if (!referCode) {
       const res = await axios.post(
-        "https://hiring.getbasis.co/candidate/users",
+        `${BASE_URL}/users`,
         {
           firstName: name,
           email,
@@ -67,12 +70,12 @@ export const signup = (user) => async (dispatch) => {
       });
     } else if (referCode) {
       const response = await axios.get(
-        `https://hiring.getbasis.co/candidate/users/referral/${referCode}`
+        `${BASE_URL}/users/referral/${referCode}`
       );
 
       if (response?.data?.success) {
         const res = await axios.post(
-          "https://hiring.getbasis.co/candidate/users",
+          `${BASE_URL}/users`,
           {
             firstName: name,
             email,
@@ -108,7 +111,7 @@ export const logout =
       };
 
       await axios.delete(
-        `https://hiring.getbasis.co/candidate/users/logout/${id}`,
+        `${BASE_URL}/users/logout/${id}`,
         config
       );
 
