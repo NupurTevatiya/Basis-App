@@ -90,10 +90,11 @@ export const FormButton = styled.button`
   cursor: pointer;
 `;
 
-export const Text = styled.span`
+export const Text = styled.div`
   text-align: center;
-  margin-top: 24px;
-  color: #fff;
+  margin-top: 1px;
+  margin-bottom: 5px;
+  color: red;
   font-size: 14px;
 `;
 export const RadioInput = styled.input`

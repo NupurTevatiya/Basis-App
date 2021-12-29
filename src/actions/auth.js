@@ -1,7 +1,9 @@
 import axios from "axios";
 import {
+  ERROR,
   REQUEST_EMAIL_VERIFICATION,
   SIGNUP_WITHOUT_REFER,
+  SIGNUP_WITH_REFER,
   USER_LOGOUT,
   VERIFY_EMAIL_TOKEN,
 } from "../constants/actions";
@@ -63,6 +65,34 @@ export const signup = (user) => async (dispatch) => {
         type: SIGNUP_WITHOUT_REFER,
         payload: res?.data?.results?.user,
       });
+    } else if (referCode) {
+      const response = await axios.get(
+        `https://hiring.getbasis.co/candidate/users/referral/${referCode}`
+      );
+
+      if (response?.data?.success) {
+        const res = await axios.post(
+          "https://hiring.getbasis.co/candidate/users",
+          {
+            firstName: name,
+            email,
+            agreeToPrivacyPolicy: agree,
+            token,
+            source: "WEB_APP",
+            referredCodeKey: referCode,
+          }
+        );
+        dispatch({
+          type: SIGNUP_WITH_REFER,
+          payload: res?.data?.results?.user,
+        });
+      }
+      else {
+        dispatch({
+          type: ERROR,
+          payload: 'Invalid Referral Code',
+        });
+      }
     }
   } catch (e) {
     alert(e.message);

@@ -11,17 +11,25 @@ import {
   FormLabel,
   FormWrapper,
   Icon,
+  Text,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const user = useSelector((state) => state.authReducer.userInfo);
+  const error = useSelector((state) => state.authReducer)
   const loginSuccess = useSelector((state) => state.authReducer.loginSuccess);
   const [name, setName] = useState("");
+  const [referCode, setReferCode] = useState(null);
   const dispatch = useDispatch();
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
+
+  const handleReferralCode = (e) => {
+    setReferCode(e.target.value);
+  };
+
   const navigate = useNavigate();
 
   console.log(user);
@@ -33,7 +41,7 @@ const SignUp = () => {
         name,
         agree: true,
         token: user?.token,
-        referCode: null,
+        referCode,
       })
     );
   };
@@ -61,9 +69,11 @@ const SignUp = () => {
             />
             <FormLabel htmlFor="for">Email</FormLabel>
             <FormInput type="email" value={user?.email} readOnly required />
-            <FormLabel htmlFor="for">ReferredCodeKey</FormLabel>
+            <FormLabel htmlFor="for" >ReferredCodeKey</FormLabel>
+            <Text>{error?.message}</Text>
+            <FormInput type="text" onChange={handleReferralCode} value={referCode} placeholder="optional" />
+            
 
-            <FormInput type="text" value="" placeholder="optional" />
             <FormButton type="submit">Continue</FormButton>
           </Form>
         </FormContent>

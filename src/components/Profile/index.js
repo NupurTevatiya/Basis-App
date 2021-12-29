@@ -33,7 +33,7 @@ const Profile = () => {
                         <FormLabel htmlFor="for">Email</FormLabel>
                         <FormInput type="email" value={user?.email} readOnly placeholder="Your Email" required/>
                         <FormLabel htmlFor="for">Phone Number</FormLabel>
-                        <FormInput type="number" value={user?.phoneNumber} readOn placeholder="Phone Number"required/>
+                        <FormInput type="number" value={user?.phoneNumber} readOnly placeholder="Phone Number" required/>
                         <FormButton type="submit" onClick={handleLogout}>Logout</FormButton>
                         </Form>
                 </FormContent>
